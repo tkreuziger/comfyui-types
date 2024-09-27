@@ -6,37 +6,37 @@ This is the documentation for the `comfyui_types` package.
 
 The following types are included:
 
-    - `InputBase`
-    - `NumberDisplayMode`
-    - `InputType`
-    - `StringInput`
-    - `BooleanInput`
-    - `IntegerInput`
-    - `FloatInput`
-    - `ChoiceInput`
-    - `ModelInput`
-    - `VAEInput`
-    - `CLIPInput`
-    - `ConditioningInput`
-    - `ImageInput`
-    - `LatentInput`
-    - 'MaskInput'
+- `InputBase`
+- `NumberDisplayMode`
+- `InputType`
+- `StringInput`
+- `BooleanInput`
+- `IntegerInput`
+- `FloatInput`
+- `ChoiceInput`
+- `ModelInput`
+- `VAEInput`
+- `CLIPInput`
+- `ConditioningInput`
+- `ImageInput`
+- `LatentInput`
+- 'MaskInput'
 
 ## Output types
 
 The following output types are included:
 
-    - `OutputBase`
-    - `StringOutput`
-    - `IntegerOutput`
-    - `FloatOutput`
-    - `CLIPOutput`
-    - `ConditioningOutput`
-    - `ImageOutput`
-    - `LatentOutput`
-    - `MaskOutput`
-    - `ModelOutput`
-    - `VAEOutput`
+- `OutputBase`
+- `StringOutput`
+- `IntegerOutput`
+- `FloatOutput`
+- `CLIPOutput`
+- `ConditioningOutput`
+- `ImageOutput`
+- `LatentOutput`
+- `MaskOutput`
+- `ModelOutput`
+- `VAEOutput`
 
 Output types do not require any additional configuration. They are simply
 defined as fields like this:
