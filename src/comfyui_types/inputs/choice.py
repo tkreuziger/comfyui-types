@@ -14,13 +14,21 @@ class ChoiceInput(InputBase):
             *,
             required: bool = True,
             hidden: bool | None = None,
-            default: str,
+            default: str | None = None,
             choices: list,
     ) -> None:
         """Initialize ChoiceInput."""
         super().__init__(required=required, hidden=hidden)
 
-        self.default = default
+        if not choices or len(choices) == 0:
+            error_msg = 'ChoiceInput must have at least one choice.'
+            raise ValueError(error_msg)
+
+        if default and default in choices:
+            self.default = default
+        else:
+            self.default = choices[0]
+
         self.choices = choices
 
     def get_input_type(self) -> tuple:
