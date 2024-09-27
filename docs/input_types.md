@@ -4,7 +4,7 @@
 
 The most common types are included in the type library and should enable you to
 write your own nodes. If you need to add a new type, please refer to the
-[section on extending](#extending-with-new-types).
+[section on extending](/docs/README.md#extending-with-new-types).
 
 ### InputBase
 
@@ -18,7 +18,7 @@ create your own custom input types.
 `comfyui_types.base.NumberDisplayMode`
 
 Integer and float inputs can either be rendered as simple number inputs or as
-sliders by ComfyUI. The default value is `NumberDisplayMode.NUMBER`.
+sliders by ComfyUI.
 
 Values:
 - `NumberDisplayMode.NUMBER`: A simple number input.
@@ -30,7 +30,7 @@ Values:
 
 This type determines, whether an input is required, optional, or hidden. You do
 not need to use this type directly, use the provided parameters `required: bool
-= True` and `hidden: bool | None = None` instead.
+= True` and `hidden: bool | None = None` of the `InputBase` constructor instead.
 
 By default, all inputs are required. Setting `hidden=True` will overwrite the
 required state.
@@ -56,8 +56,10 @@ A simple string input with two optional parameters:
 
 - `default: str = ''`: The default value of the input, an empty string if not
 set.
-- `multiline: bool = False`: If the input should be multiline. `False` by
+- `multiline: bool = False`: Whether the input should be multiline. `False` by
 default.
+
+Example:
 
 ```python
 my_string_input = StringInput(
@@ -72,6 +74,8 @@ my_string_input = StringInput(
 
 A simple boolean input with only an optional `default` parameter (which itself
 defaults to `False`).
+
+Example:
 
 ```python
 my_bool_input = BooleanInput(default=True)
@@ -89,6 +93,8 @@ A simple integer input with the following optional parameters:
 - `step: int = 1`: The step value of the input, `1` by default.
 - `display: NumberDisplayMode = NumberDisplayMode.NUMBER`: The display mode of
 the input, either as [a number or a slider](#NumberDisplayMode), `NUMBER` by default.
+
+Example:
 
 ```python
 my_int_input = IntegerInput(
@@ -117,6 +123,8 @@ used.
 the input, either as [a number or a slider](#NumberDisplayMode), `NUMBER` by
 default.
 
+Example:
+
 ```python
 my_float_input = FloatInput(
     default=4.0,
@@ -138,6 +146,8 @@ following parameters:
 - `default: str | None = None`: The default choice from the list. If `None`, the
 first option from the options list will be selected.
 - `options: list[str]`: The list of options to choose from.
+
+Example:
 
 ```python
 my_choice_input = ChoiceInput(
@@ -161,6 +171,8 @@ parameters, except the [input type](#InputType).
 
 A parameter that accepts a model (`MODEL` ComfyUI type).
 
+Example:
+
 ```python
 my_model_input = ModelInput()
 ```
@@ -170,6 +182,8 @@ my_model_input = ModelInput()
 `comfyui_types.inputs.builtin.VAEInput`
 
 A parameter that accepts a VAE (`VAE` ComfyUI type).
+
+Example:
 
 ```python
 my_vae_input = VAEInput()
@@ -181,6 +195,8 @@ my_vae_input = VAEInput()
 
 A parameter that accepts a CLIP (`CLIP` ComfyUI type).
 
+Example:
+
 ```python
 my_clip_input = CLIPInput()
 ```
@@ -190,6 +206,8 @@ my_clip_input = CLIPInput()
 `comfyui_types.inputs.builtin.ConditioningInput`
 
 A parameter that accepts a conditioning (`CONDITIONING` ComfyUI type).
+
+Example:
 
 ```python
 my_cond_input = ConditioningInput()
@@ -201,6 +219,8 @@ my_cond_input = ConditioningInput()
 
 A parameter that accepts an image (`IMAGE` ComfyUI type).
 
+Example:
+
 ```python
 my_image_input = ImageInput()
 ```
@@ -210,6 +230,8 @@ my_image_input = ImageInput()
 `comfyui_types.inputs.builtin.LatentInput`
 
 A parameter that accepts a latent image (`LATENT` ComfyUI type).
+
+Example:
 
 ```python
 my_latent_input = LatentInput()
@@ -221,11 +243,8 @@ my_latent_input = LatentInput()
 
 A parameter that accepts a mask (`MASK` ComfyUI type).
 
+Example:
+
 ```python
 my_mask_input = MaskInput()
 ```
-
-## Extending with new types
-
-...
-

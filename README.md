@@ -64,17 +64,11 @@ current way of defining a `FUNCTION` field and it will work as intended.
 
 ### Defining input parameters
 
-Now it is time to define your inputs. The following types are included in the
-type library, [but more can easily be added](#extending-with-new-types):
+You define your input parameters as fields of the node class. All available
+input types are described in the [documentation](/docs/input_types.md).
 
-- `StringInput`
-- `IntegerInput`
-- `FloatInput`
-- ...
-
-Simply add members to your node. The name of the field will be used as the name
-that is shown in the UI. Any other options are defined as parameters of the
-input field:
+The name of the field will be used as the name that is shown in the UI. Any
+other options are defined as parameters of the input field:
 
 ```python
 from comfyui_types import ComfyUINode, StringInput, FloatInput
@@ -86,30 +80,26 @@ class MyCustomNode(ComfyUINode):
     secret_parameter = FloatInput(hidden=True)
 ```
 
-Input parameters can be `required`, `optional`, or `hidden`. Usually, most
-parameters are required, so the default value for `required` is `True`. If
-you need an optional parameter, pass in `required=False`. If you want a hidden
+Input parameters can be `required`, `optional`, or `hidden` (see [Input
+type](/docs/input_types.md#inputtype) for more information). Usually, most
+parameters are required, so the default value for `required` is `True`. If you
+need an optional parameter, pass in `required=False`. If you want a hidden
 parameter, pass in `hidden=True`. Due to the assumption of required being the
 default state, `hidden=True` will overwrite the required state.
 
-You can find descriptions and explanations for all possible parameters in the
-[documentation](/docs).
-
 ### Defining output parameters
 
-Finally, add your output parameters. For each input parameter type there is a
-corresponding output parameter type:
+Output parameters are defined analogously to input parameters as fields. Check
+the list of available output types in the
+[documentation](/docs/README.md#output-types).
 
-- `StringOutput`
-- `IntegerOutput`
-- ...
+Example:
 
-Define your output parameters
 ```python
 from comfyui_types import ComfyUINode, StringOutput, FloatOutput
 
 class MyCustomNode(ComfyUINode):
-    # all the other things so far
+    # Definitions so far...
 
     combined_prompt = StringOutput()
     calculated_score = FloatOutput()
@@ -173,12 +163,12 @@ will automatically create the following entry in `INPUT_TYPES`:
 ('STRING', {'default': 'masterpiece', 'multiline': True})
 ```
 
-## Backwards compatibility
+## Compatibility with ComfyUI
 
-The way the `ComfyUINode` is defined is 100% backwards compatible with existing
-nodes and practices. It simply creates the fields that are expected from a class
-that ComfyUI imports as a custom node, like `INPUT_TYPES`. If at any point, you
-do not like the conventions or they do not work with your use case, you can fall
+The way the `ComfyUINode` is defined is fully compatible with existing nodes and
+practices. It simply creates the fields that are expected from a class that
+ComfyUI imports as a custom node, like `INPUT_TYPES`. If at any point, you do
+not like the conventions or they do not work with your use case, you can fall
 back to the regular way of defining custom nodes in ComfyUI, i.e.:
 
 - use `CATEGORY` instead of `category`
