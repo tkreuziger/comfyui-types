@@ -181,7 +181,12 @@ match to suit your preferences.
 ## Development
 
 For development, there is no special setup, simply install the project in edit
-mode (`pip install -e ./comfyui_types`) and go at it.
+mode:
+
+```python
+git clone git@github.com:tkreuziger/comfyui-types.git ./comfyui_types
+pip install -e ./comfyui_types
+```
 
 ## License
 
