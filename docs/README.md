@@ -20,7 +20,7 @@ The following types are included:
 - `ConditioningInput`
 - `ImageInput`
 - `LatentInput`
-- 'MaskInput'
+- `MaskInput`
 
 ## Output types
 
