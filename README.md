@@ -54,8 +54,8 @@ written in lower case letters for consistency. Feel free to continue using
 your name in the ComfyUI frontend. If you do not define this member, it will
 simply use the name of the class, i.e. `MyCustomNode` in this example,
 automatically. This is only relevant, if you use the [exporter
-function](#exporting-custom-nodes), described below, otherwise it be safely
-ignored.
+function](#exporting-custom-nodes), described below, otherwise it can safely
+be ignored.
 - `function` works the same as the traditional `FUNCTION` member, but has a
 default value of `execute`. This means that you can save yourself writing one
 line of code, if you simply name the method of your node that you want to be
