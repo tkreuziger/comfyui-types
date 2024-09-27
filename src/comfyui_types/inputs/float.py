@@ -9,7 +9,7 @@ class FloatInput(InputBase):
     default: float = 0.0
     min: float = 0.0
     max: float = 1.0
-    step: float = 1.0
+    step: float = 0.1
     round: float | bool = False
     display: NumberDisplayMode = NumberDisplayMode.NUMBER
 
