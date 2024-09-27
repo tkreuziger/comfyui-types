@@ -1,0 +1,13 @@
+venv/
+*.pyc
+*egg-info/
+.tox/
+.coverage
+
+# Linting
+.ruff-cache/
+.mypy_cache/
+
+# Developer tooling
+.ignore
+.nvmrc
