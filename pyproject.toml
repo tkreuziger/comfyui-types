@@ -5,15 +5,16 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "comfyui_types"
 requires-python = ">=3.10"
-version = "0.1.0"
+version = "0.1.2"
 description = "A small helper library to add types for custom ComfyUI nodes."
 readme = "README.md"
 authors = [{name = "Tristan Kreuziger", email = "info@tkreuziger.com"}]
 dependencies = []
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: GPL-3 License",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
 ]
 
 [project.urls]
@@ -62,7 +63,7 @@ skip_install = true
 
 [tool.tox.env.format]
 description = "Format code with ruff."
-extras = "format"
+extras = "lint"
 allowlist_externals = ["ruff"]
 commands = [
     ["ruff", "format", "src"],
