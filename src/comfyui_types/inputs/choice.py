@@ -11,11 +11,11 @@ class ChoiceInput(InputBase):
 
     def __init__(
         self,
+        choices: list,
         *,
         required: bool = True,
         hidden: bool | None = None,
         default: str | None = None,
-        choices: list,
     ) -> None:
         """Initialize ChoiceInput."""
         super().__init__(required=required, hidden=hidden)
