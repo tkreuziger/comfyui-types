@@ -16,6 +16,10 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+[project.urls]
+Homepage = "https://github.com/tkreuziger/comfyui-types"
+Issues = "https://github.com/tkreuziger/comfyui-types/issues"
+
 [project.optional-dependencies]
 lint = [
     "ruff>=0.5.6,<1.0",
