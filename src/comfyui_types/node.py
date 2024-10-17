@@ -12,6 +12,7 @@ class ComfyUINode:
     function = 'execute'
     category = ''
     display_name = ''
+    output_node = False
 
     @classmethod
     def _get_display_name(cls) -> str:
@@ -36,6 +37,12 @@ class ComfyUINode:
     def FUNCTION(cls) -> str:  # noqa: N802
         """Return entry function."""
         return cls.function
+
+    @classmethod
+    @property
+    def OUTPUT_NODE(cls) -> bool:  # noqa: N802
+        """Whether this is an output node or not."""
+        return cls.output_node
 
     @classmethod
     @property
