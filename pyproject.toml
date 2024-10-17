@@ -1,0 +1,136 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "comfyui_types"
+requires-python = ">=3.10"
+version = "0.1.0"
+description = "A small helper library to add types for custom ComfyUI nodes."
+authors = [{name = "Tristan Kreuziger", email = "info@tkreuziger.com"}]
+license = {text = "GPL-3.0"}
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+lint = [
+    "ruff>=0.5.6,<1.0",
+    "mypy-extensions>=1.0.0",
+    "mypy>=1.11.1,<2.0",
+]
+build = [
+    "build[virtualenv]==1.0.3",
+]
+dev = [
+    "tox>=4.5,<5.0",
+    "pip-tools>=7.4.1,<8.0",
+
+    "comfyui_types[format]",
+    "comfyui_types[lint]",
+    "comfyui_types[test]",
+    "comfyui_types[build]",
+]
+
+# ------------------------------------------------------------------------------
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+# ------------------------------------------------------------------------------
+
+[tool.tox]
+envlist = [
+    "format",
+    "lint",
+    "test",
+]
+isolated_build = true
+parallel = "auto"
+
+[tool.tox.env_run_base]
+basepython = ["py310"]
+skip_install = true
+
+[tool.tox.env.format]
+description = "Format code with ruff."
+extras = "format"
+allowlist_externals = ["ruff"]
+commands = [
+    ["ruff", "format", "src"],
+]
+
+[tool.tox.env.lint]
+description = "Run static checkers."
+extras = "lint"
+allowlist_externals = ["ruff", "mypy"]
+commands = [
+    ["ruff", "check", "src", "--fix"],
+    ["mypy", "src"],
+]
+
+# ------------------------------------------------------------------------------
+
+[tool.ruff]
+line-length = 80
+indent-width = 4
+src = ["src"]
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812",
+    "ISC001",
+    "ANN101",
+    "PT001",
+    "PT004",
+    "PT005",
+    "PT023",
+    "Q002",
+    "D300",
+]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    "S101",
+    "D103",
+]
+"**/__init__.py" = [
+    "F401",
+    "F403",
+]
+
+[tool.ruff.lint.pyupgrade]
+keep-runtime-typing = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "single"
+docstring-code-format = true
+docstring-code-line-length = 80
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+
+# ------------------------------------------------------------------------------
+
+[tool.mypy]
+mypy_path = "src"
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_unused_ignores = false
+strict = true
+exclude = [
+    ".git/",
+    "venv/",
+]
+
