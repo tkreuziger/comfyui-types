@@ -19,10 +19,7 @@ class InputBase:
     type_name: str = ''
 
     def __init__(
-            self,
-            *,
-            required: bool = True,
-            hidden: bool | None = None
+        self, *, required: bool = True, hidden: bool | None = None
     ) -> None:
         """Initialize InputBase."""
         if required and not hidden:

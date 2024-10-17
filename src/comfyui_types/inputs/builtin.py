@@ -12,7 +12,7 @@ class ModelInput(InputBase):
 class VAEInput(InputBase):
     """ComfyUI VAE input."""
 
-    type_name  = 'VAE'
+    type_name = 'VAE'
 
 
 class CLIPInput(InputBase):

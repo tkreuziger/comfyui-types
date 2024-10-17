@@ -33,7 +33,6 @@ from .outputs import (
 
 __all__ = [
     'ComfyUINode',
-
     'InputBase',
     'InputType',
     'NumberDisplayMode',
@@ -47,7 +46,6 @@ __all__ = [
     'LatentInput',
     'ImageInput',
     'ChoiceInput',
-
     'OutputBase',
     'StringOutput',
     'IntegerOutput',
@@ -59,6 +57,5 @@ __all__ = [
     'LatentOutput',
     'ImageOutput',
     'MaskOutput',
-
     'export_nodes',
 ]

@@ -9,11 +9,11 @@ class BooleanInput(InputBase):
     default: bool = False
 
     def __init__(
-            self,
-            *,
-            required: bool = True,
-            hidden: bool | None = None,
-            default: bool = False
+        self,
+        *,
+        required: bool = True,
+        hidden: bool | None = None,
+        default: bool = False,
     ) -> None:
         """Initialize BooleanInput."""
         super().__init__(required=required, hidden=hidden)

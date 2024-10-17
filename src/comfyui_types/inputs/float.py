@@ -14,16 +14,16 @@ class FloatInput(InputBase):
     display: NumberDisplayMode = NumberDisplayMode.NUMBER
 
     def __init__(  # noqa: PLR0913
-            self,
-            *,
-            required: bool = True,
-            hidden: bool | None = None,
-            default: float = 0.0,
-            min: float = 0.0,  # noqa: A002
-            max: float = 1.0,  # noqa: A002
-            step: float = 1.0,
-            round: float | bool | None = False,  # noqa: A002
-            display: NumberDisplayMode = NumberDisplayMode.NUMBER,
+        self,
+        *,
+        required: bool = True,
+        hidden: bool | None = None,
+        default: float = 0.0,
+        min: float = 0.0,  # noqa: A002
+        max: float = 1.0,  # noqa: A002
+        step: float = 1.0,
+        round: float | bool | None = False,  # noqa: A002
+        display: NumberDisplayMode = NumberDisplayMode.NUMBER,
     ) -> None:
         """Initialize FloatInput."""
         super().__init__(required=required, hidden=hidden)
@@ -43,14 +43,13 @@ class FloatInput(InputBase):
     def get_input_type(self) -> tuple:
         """Return input type."""
         return (
-            'FLOAT', {
+            'FLOAT',
+            {
                 'default': self.default,
                 'min': self.min,
                 'max': self.max,
                 'step': self.step,
                 'round': self.round,
                 'display': self.display.value,
-            })
-
-
-
+            },
+        )

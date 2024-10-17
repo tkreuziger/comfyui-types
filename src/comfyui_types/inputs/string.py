@@ -10,12 +10,12 @@ class StringInput(InputBase):
     multiline: bool = False
 
     def __init__(
-            self,
-            *,
-            required: bool = True,
-            hidden: bool | None = None,
-            default: str = '',
-            multiline: bool = False
+        self,
+        *,
+        required: bool = True,
+        hidden: bool | None = None,
+        default: str = '',
+        multiline: bool = False,
     ) -> None:
         """Initialize StringInput."""
         super().__init__(required=required, hidden=hidden)
@@ -26,10 +26,9 @@ class StringInput(InputBase):
     def get_input_type(self) -> tuple:
         """Return input type."""
         return (
-            'STRING', {
+            'STRING',
+            {
                 'default': self.default,
                 'multiline': self.multiline,
-            })
-
-
-
+            },
+        )

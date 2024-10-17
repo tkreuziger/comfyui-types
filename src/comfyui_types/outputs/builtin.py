@@ -12,7 +12,7 @@ class ModelOutput(OutputBase):
 class VAEOutput(OutputBase):
     """ComfyUI VAE output."""
 
-    output_type  = 'VAE'
+    output_type = 'VAE'
 
 
 class CLIPOutput(OutputBase):

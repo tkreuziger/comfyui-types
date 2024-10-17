@@ -10,12 +10,12 @@ class ChoiceInput(InputBase):
     choices: list
 
     def __init__(
-            self,
-            *,
-            required: bool = True,
-            hidden: bool | None = None,
-            default: str | None = None,
-            choices: list,
+        self,
+        *,
+        required: bool = True,
+        hidden: bool | None = None,
+        default: str | None = None,
+        choices: list,
     ) -> None:
         """Initialize ChoiceInput."""
         super().__init__(required=required, hidden=hidden)
@@ -34,6 +34,3 @@ class ChoiceInput(InputBase):
     def get_input_type(self) -> tuple:
         """Return input type."""
         return (self.choices, {'default': self.default})
-
-
-

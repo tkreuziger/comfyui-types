@@ -1,4 +1,5 @@
 """ComfyUI node."""
+
 import json
 
 from .inputs import InputBase
@@ -53,11 +54,12 @@ class ComfyUINode:
     def RETURN_NAMES(cls) -> tuple[str]:  # noqa: N802
         """Return list of return names."""
         output_names = [
-            field for field in cls.__dict__
+            field
+            for field in cls.__dict__
             if isinstance(getattr(cls, field), OutputBase)
         ]
 
-        return tuple(output_names) # type: ignore  # noqa: PGH003
+        return tuple(output_names)  # type: ignore  # noqa: PGH003
 
     @classmethod
     def describe(cls) -> str:
