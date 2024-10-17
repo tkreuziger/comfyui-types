@@ -7,12 +7,12 @@ name = "comfyui_types"
 requires-python = ">=3.10"
 version = "0.1.0"
 description = "A small helper library to add types for custom ComfyUI nodes."
+readme = "README.md"
 authors = [{name = "Tristan Kreuziger", email = "info@tkreuziger.com"}]
-license = {text = "GPL-3.0"}
 dependencies = []
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: GPL-3 License",
     "Operating System :: OS Independent",
 ]
 
