@@ -178,6 +178,18 @@ back to the regular way of defining custom nodes in ComfyUI, i.e.:
 Only the parts that you choose to use will actually be active, you can mix and
 match to suit your preferences.
 
+## Projects using ComfyUI-Types
+
+The following list of projects are using this project. This is not relevant to
+end-consumers, but if you are developing your own nodes, head over there and get
+some inspiration and real-world exposure:
+
+- [ComfyUI Claude](https://github.com/tkreuziger/comfyui-claude): A set of
+custom nodes that are using Anthropic's Claude models for describing images and
+transforming texts.
+
+If you want to add a project to this list, please open a PR!
+
 ## Development
 
 For development, there is no special setup, simply install the project in edit
