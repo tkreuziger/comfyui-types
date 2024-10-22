@@ -14,7 +14,7 @@ PyPI and conda packages are coming soon, in the meantime, please install the
 package locally:
 
 ```bash
-git clone git@github.com:tkreuziger/comfyui-types.git ./comfyui_types
+git clone https://github.com/tkreuziger/comfyui-types.git ./comfyui_types
 pip install ./comfyui_types
 ```
 
