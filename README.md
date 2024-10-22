@@ -125,10 +125,10 @@ how to write your own custom nodes.
 Custom nodes can be manually exported as always like this:
 
 ```python
-NODE_CLASS_MAPPING = {
+NODE_CLASS_MAPPINGS = {
     'MyCustomNode': MyCustomNode,
 }
-NODE_DISPLAY_NAME_MAPPING = {
+NODE_DISPLAY_NAME_MAPPINGS = {
     'MyCustomNode': 'My Cool Custom Node',
 }
 ```
@@ -136,7 +136,7 @@ NODE_DISPLAY_NAME_MAPPING = {
 However, there is a convenience function to help with this:
 
 ```python
-NODE_CLASS_MAPPING, NODE_DISPLAY_NAME_MAPPING = export_nodes([
+NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS = export_nodes([
     MyCustomNode,
 ])
 ```
