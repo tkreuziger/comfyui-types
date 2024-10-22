@@ -99,3 +99,22 @@ class VectorInput(ct.InputBase):
 class VectorOutput(ct.OutputBase):
     type_name = 'VECTOR'
 ```
+
+## Python support
+
+`comfyui-types` currently relies on Python 3.10 for type annotations, but could
+probably made to work with earlier versions like 3.8. However, internally it
+uses static properties like this:
+
+```python
+@classmethod
+@property
+def FUNCTION(cls) -> str:  # noqa: N802
+    """Return the entry function."""
+    return cls.function
+```
+
+That works as intended, but the issue is that static properties are depracted in
+Python 3.12 and will be removed in Python 3.13. While ComyUI does not rely on
+the most cutting-edge features of Python, a solution that works with future
+Python versions is a high priority topic.
