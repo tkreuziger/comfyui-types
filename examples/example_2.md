@@ -18,9 +18,11 @@ class DebugLogNode(ct.ComfyUINode):
         return ()
 
 
-NODE_CLASS_MAPPING, NODE_DISPLAY_NAME_MAPPING = ct.export_nodes([
+NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS = ct.export_nodes([
     DebugLogNode,
 ])
 ```
+
+![DebugLogNode in action](./debuglognode_screenshot.png)
 
 This node simply logs any text input to the terminal.

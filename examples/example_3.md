@@ -11,7 +11,7 @@ provider.
 This is how we traditionally define a custom node for ComfyUI:
 
 ```python
-class DescribeImage:
+class DescribeImageNode:
     @classmethod
     def INPUT_TYPES(cls):
         return {
@@ -55,7 +55,7 @@ This is how we could rewrite it with typing. Both nodes are functionally
 identical and will look the same to ComfyUI.
 
 ```python
-class DescribeImage(ComfyUINode):
+class DescribeImageNode(ComfyUINode):
     image = ImageInput()
     model = ChoiceInput(choices=models)
     api_key = StringInput()
@@ -80,11 +80,13 @@ class DescribeImage(ComfyUINode):
 This solution is a bit shorter, but while typing, your IDE will help you create
 valid fields with correct parameters.
 
+![DescribeImageNode in action](./describeimagenode_screenshot.png)
+
 Both versions can be exported with the same handy "macro" within your
 `__init__.py` file:
 
 ```python
-NODE_CLASS_MAPPING, NODE_DISPLAY_NAME_MAPPING = export_nodes([
-    DescribeImage,
+NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS = export_nodes([
+    DescribeImageNode,
 ])
 ```

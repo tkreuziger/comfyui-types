@@ -26,16 +26,18 @@ class ExampleNode(ct.ComfyUINode):
         return (f'{my_text} {my_other_text} {my_number}',)
 
 
-NODE_CLASS_MAPPING, NODE_DISPLAY_NAME_MAPPING = ct.export_nodes([
+NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS = ct.export_nodes([
     ExampleNode,
 ])
 ```
+
+![ExampleNode in action](./myexamplenode_screenshot.png)
 
 While not useful, this demonstrates most things that are possible with
 `comfyui-types`:
 
 - Defining meta attributes like `category` in a consistent way.
-- Defining inputs and outputs with foll type support and annotations for all
+- Defining inputs and outputs with full type support and annotations for all
 optional parameters.
 - Easily exporting nodes for ComfyUI using the already defined properties like
 `display_name`.
