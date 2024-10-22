@@ -1,17 +1,26 @@
 # ComfyUI Types
 
 This is a small helper project to make it easier to write custom nodes for
-ComfyUI. Usually, ComfyUI types use string values for parameter and return
-types, which can cause errors during development. With string values, an IDE
-like VS Code or neovim cannot recognize the types and offer suggestions. This
-project provides a small set of shallow Python classes that provide typing, so
-an IDE can pick up correct types and show errors before the node is imported,
+ComfyUI. Usually, types in ComfyUI are represented as string constants for
+parameter and return types, which can cause errors during development, as it is
+easy to mistype. With such string constants, your IDE cannot recognize the types
+and offer suggestions or alarm you abour errors. Such an error will only be
+found, when ComfyUI is restarted and the custom node is executed.
+
+This project provides a small set of shallow Python classes that provide typing,
+so an IDE can pick up correct types and show errors before the node is imported,
 making development much faster and reducing debugging.
 
 ## Installation
 
-PyPI and conda packages are coming soon, in the meantime, please install the
-package locally:
+Install from PyPI:
+
+```bash
+pip install comfyui-types
+```
+
+A conda package is coming soon. Alternatively, you can install the package
+locally from source:
 
 ```bash
 git clone https://github.com/tkreuziger/comfyui-types.git ./comfyui_types
