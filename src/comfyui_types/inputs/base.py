@@ -17,9 +17,14 @@ class InputBase:
 
     input_type: InputType = InputType.REQUIRED
     type_name: str = ''
+    display_name: str | None = None
 
     def __init__(
-        self, *, required: bool = True, hidden: bool | None = None
+        self,
+        *,
+        required: bool = True,
+        hidden: bool | None = None,
+        display_name: str | None = None,
     ) -> None:
         """Initialize InputBase."""
         if required and not hidden:
@@ -28,6 +33,8 @@ class InputBase:
             self.input_type = InputType.HIDDEN
         else:
             self.input_type = InputType.OPTIONAL
+
+        self.display_name = display_name
 
     @abstractmethod
     def get_input_type(self) -> tuple:

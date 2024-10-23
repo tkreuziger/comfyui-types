@@ -15,9 +15,12 @@ class BooleanInput(InputBase):
         required: bool = True,
         hidden: bool | None = None,
         default: bool = False,
+        display_name: str | None = None,
     ) -> None:
         """Initialize BooleanInput."""
-        super().__init__(required=required, hidden=hidden)
+        super().__init__(
+            required=required, hidden=hidden, display_name=display_name
+        )
 
         self.default = default
 

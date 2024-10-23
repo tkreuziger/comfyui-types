@@ -16,9 +16,12 @@ class ChoiceInput(InputBase):
         required: bool = True,
         hidden: bool | None = None,
         default: str | None = None,
+        display_name: str | None = None,
     ) -> None:
         """Initialize ChoiceInput."""
-        super().__init__(required=required, hidden=hidden)
+        super().__init__(
+            required=required, hidden=hidden, display_name=display_name
+        )
 
         if not choices or len(choices) == 0:
             error_msg = 'ChoiceInput must have at least one choice.'

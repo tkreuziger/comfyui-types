@@ -23,9 +23,12 @@ class IntegerInput(InputBase):
         max: int = 1,  # noqa: A002
         step: int = 1,
         display: NumberDisplayMode = NumberDisplayMode.NUMBER,
+        display_name: str | None = None,
     ) -> None:
         """Initialize IntegerInput."""
-        super().__init__(required=required, hidden=hidden)
+        super().__init__(
+            required=required, hidden=hidden, display_name=display_name
+        )
 
         self.default = default
         self.min = min

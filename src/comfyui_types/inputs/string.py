@@ -17,9 +17,12 @@ class StringInput(InputBase):
         hidden: bool | None = None,
         default: str = '',
         multiline: bool = False,
+        display_name: str | None = None,
     ) -> None:
         """Initialize StringInput."""
-        super().__init__(required=required, hidden=hidden)
+        super().__init__(
+            required=required, hidden=hidden, display_name=display_name
+        )
 
         self.default = default
         self.multiline = multiline

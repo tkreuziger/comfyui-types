@@ -25,9 +25,12 @@ class FloatInput(InputBase):
         step: float = 1.0,
         round: float | bool | None = False,  # noqa: A002
         display: NumberDisplayMode = NumberDisplayMode.NUMBER,
+        display_name: str | None = None,
     ) -> None:
         """Initialize FloatInput."""
-        super().__init__(required=required, hidden=hidden)
+        super().__init__(
+            required=required, hidden=hidden, display_name=display_name
+        )
 
         self.default = default
         self.min = min

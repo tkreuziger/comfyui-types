@@ -30,7 +30,12 @@ class ComfyUINode:
             if isinstance(getattr(cls, field), InputBase):
                 field_obj = getattr(cls, field)
                 input_type = field_obj.get_input_type()
-                input_types[field_obj.input_type.value][field] = input_type
+
+                if field_obj.display_name not in [None, '']:
+                    field_name = field_obj.display_name
+                else:
+                    field_name = field
+                input_types[field_obj.input_type.value][field_name] = input_type
 
         return input_types
 
@@ -62,11 +67,16 @@ class ComfyUINode:
     @property
     def RETURN_NAMES(cls) -> tuple[str]:  # noqa: N802
         """Return list of return names."""
-        output_names = [
-            field
-            for field in cls.__dict__
-            if isinstance(getattr(cls, field), OutputBase)
-        ]
+        output_names = []
+        for field in cls.__dict__:
+            if isinstance(getattr(cls, field), OutputBase):
+                field_obj = getattr(cls, field)
+
+                if field_obj.display_name not in [None, '']:
+                    field_name = field_obj.display_name
+                else:
+                    field_name = field
+                output_names.append(field_name)
 
         return tuple(output_names)  # type: ignore  # noqa: PGH003
 
