@@ -9,10 +9,12 @@ from .outputs import OutputBase
 class ComfyUINode:
     """Abstract base class for all typed ComfyUI nodes."""
 
-    function = 'execute'
-    category = ''
-    display_name = ''
-    output_node = False
+    function: str = 'execute'
+    category: str = ''
+    display_name: str = ''
+    output_node: bool = False
+    deprecated: bool = False
+    experimental: bool = False
 
     @classmethod
     def _get_display_name(cls) -> str:
@@ -67,6 +69,18 @@ class ComfyUINode:
         ]
 
         return tuple(output_names)  # type: ignore  # noqa: PGH003
+
+    @classmethod
+    @property
+    def DEPRECATED(cls) -> bool:  # noqa: N802
+        """Indicated whether the node is deprecated."""
+        return cls.deprecated
+
+    @classmethod
+    @property
+    def EXPERIMENTAL(cls) -> bool:  # noqa: N802
+        """Indicated whether the node is experimental."""
+        return cls.experimental
 
     @classmethod
     def describe(cls) -> str:
