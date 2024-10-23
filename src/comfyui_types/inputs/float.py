@@ -12,6 +12,7 @@ class FloatInput(InputBase):
     step: float = 0.1
     round: float | bool = False
     display: NumberDisplayMode = NumberDisplayMode.NUMBER
+    lazy: bool = True
 
     def __init__(  # noqa: PLR0913
         self,
@@ -51,5 +52,6 @@ class FloatInput(InputBase):
                 'step': self.step,
                 'round': self.round,
                 'display': self.display.value,
+                'lazy': self.lazy,
             },
         )

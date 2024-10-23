@@ -11,6 +11,7 @@ class IntegerInput(InputBase):
     max: int = 0
     step: int = 1
     display: NumberDisplayMode = NumberDisplayMode.NUMBER
+    lazy: bool = True
 
     def __init__(  # noqa: PLR0913
         self,
@@ -42,5 +43,6 @@ class IntegerInput(InputBase):
                 'max': self.max,
                 'step': self.step,
                 'display': self.display.value,
+                'lazy': self.lazy,
             },
         )

@@ -8,6 +8,7 @@ class StringInput(InputBase):
 
     default: str = ''
     multiline: bool = False
+    lazy: bool = True
 
     def __init__(
         self,
@@ -30,5 +31,6 @@ class StringInput(InputBase):
             {
                 'default': self.default,
                 'multiline': self.multiline,
+                'lazy': self.lazy,
             },
         )

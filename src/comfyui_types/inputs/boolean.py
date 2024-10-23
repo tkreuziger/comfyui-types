@@ -7,6 +7,7 @@ class BooleanInput(InputBase):
     """ComfyUI boolean input."""
 
     default: bool = False
+    lazy: bool = True
 
     def __init__(
         self,
@@ -22,4 +23,4 @@ class BooleanInput(InputBase):
 
     def get_input_type(self) -> tuple:
         """Return input type."""
-        return ('BOOL', {'default': self.default})
+        return ('BOOL', {'default': self.default, 'lazy': self.lazy})
