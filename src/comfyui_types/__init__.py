@@ -2,6 +2,7 @@
 
 from .export import export_nodes
 from .inputs import (
+    BooleanInput,
     ChoiceInput,
     CLIPInput,
     ConditioningInput,
@@ -39,6 +40,7 @@ __all__ = [
     'StringInput',
     'IntegerInput',
     'FloatInput',
+    'BooleanInput',
     'ModelInput',
     'VAEInput',
     'CLIPInput',
