@@ -1,6 +1,6 @@
 """ComfyUI string input."""
 
-from .base import InputBase
+from .base import InputBase, InputTypeReturnType
 
 
 class StringInput(InputBase):
@@ -27,7 +27,7 @@ class StringInput(InputBase):
         self.default = default
         self.multiline = multiline
 
-    def get_input_type(self) -> tuple:
+    def get_input_type(self) -> InputTypeReturnType:
         """Return input type."""
         return (
             'STRING',

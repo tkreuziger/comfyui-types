@@ -1,5 +1,7 @@
 """Conveniently export nodes."""
 
+from comfyui_types import ComfyUINode
+
 
 def export_nodes(nodes: list[type]) -> tuple[dict[str, type], dict[str, str]]:
     """Export nodes for ComfyUI to import properly.
@@ -13,7 +15,9 @@ def export_nodes(nodes: list[type]) -> tuple[dict[str, type], dict[str, str]]:
     node_class_mappings = {cls.__name__: cls for cls in nodes}
 
     node_display_name_mappings = {
-        cls.__name__: cls._get_display_name() for cls in nodes
+        cls.__name__: cls._get_display_name()
+        for cls in nodes
+        if issubclass(cls, ComfyUINode)
     }
 
     return node_class_mappings, node_display_name_mappings

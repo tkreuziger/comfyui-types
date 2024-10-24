@@ -12,6 +12,11 @@ class InputType(str, Enum):
     HIDDEN = 'hidden'
 
 
+InputTypeReturnType = (
+    tuple[str] | tuple[str | list[str], dict[str, str | int | float | bool]]
+)
+
+
 class InputBase:
     """ComfyUI input."""
 
@@ -37,7 +42,7 @@ class InputBase:
         self.display_name = display_name
 
     @abstractmethod
-    def get_input_type(self) -> tuple:
+    def get_input_type(self) -> InputTypeReturnType:
         """Return input type."""
         return (self.type_name,)
 

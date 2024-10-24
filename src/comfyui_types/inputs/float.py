@@ -1,6 +1,6 @@
 """ComfyUI float input."""
 
-from .base import InputBase, NumberDisplayMode
+from .base import InputBase, InputTypeReturnType, NumberDisplayMode
 
 
 class FloatInput(InputBase):
@@ -44,7 +44,7 @@ class FloatInput(InputBase):
 
         self.display = display
 
-    def get_input_type(self) -> tuple:
+    def get_input_type(self) -> InputTypeReturnType:
         """Return input type."""
         return (
             'FLOAT',

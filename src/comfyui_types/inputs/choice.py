@@ -1,17 +1,17 @@
 """ComfyUI choice input."""
 
-from .base import InputBase
+from .base import InputBase, InputTypeReturnType
 
 
 class ChoiceInput(InputBase):
     """ComfyUI choice input."""
 
     default: str
-    choices: list
+    choices: list[str]
 
     def __init__(
         self,
-        choices: list,
+        choices: list[str],
         *,
         required: bool = True,
         hidden: bool | None = None,
@@ -34,6 +34,6 @@ class ChoiceInput(InputBase):
 
         self.choices = choices
 
-    def get_input_type(self) -> tuple:
+    def get_input_type(self) -> InputTypeReturnType:
         """Return input type."""
         return (self.choices, {'default': self.default})
