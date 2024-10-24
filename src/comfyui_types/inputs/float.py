@@ -14,7 +14,7 @@ class FloatInput(InputBase):
     display: NumberDisplayMode = NumberDisplayMode.NUMBER
     lazy: bool = True
 
-    def __init__(  # noqa: PLR0913
+    def __init__(
         self,
         *,
         required: bool = True,
