@@ -46,6 +46,8 @@ package-dir = {"" = "src"}
 
 [tool.setuptools_scm]
 version_file = "src/comfyui_types/_version.py"
+version_scheme = "guess-next-dev"
+local_scheme = "node-and-timestamp"
 
 # ------------------------------------------------------------------------------
 
