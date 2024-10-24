@@ -41,7 +41,6 @@ class InputBase:
 
         self.display_name = display_name
 
-    @abstractmethod
     def get_input_type(self) -> InputTypeReturnType:
         """Return input type."""
         return (self.type_name,)
