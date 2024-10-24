@@ -19,8 +19,13 @@ Install from PyPI:
 pip install comfyui-types
 ```
 
-A conda package is coming soon. Alternatively, you can install the package
-locally from source:
+Or via conda:
+
+```bash
+conda install tkreuziger::comfyui_types
+```
+
+Alternatively, you can install the package locally from source:
 
 ```bash
 git clone https://github.com/tkreuziger/comfyui-types.git ./comfyui_types
