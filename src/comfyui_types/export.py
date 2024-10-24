@@ -1,6 +1,6 @@
 """Conveniently export nodes."""
 
-from comfyui_types import ComfyUINode
+from .node import ComfyUINode
 
 
 def export_nodes(nodes: list[type]) -> tuple[dict[str, type], dict[str, str]]:
