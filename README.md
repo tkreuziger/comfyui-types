@@ -201,10 +201,10 @@ If you want to add a project to this list, please open a PR!
 
 ## Development
 
-The project uses `tox` as for development. You can get started like this:
+The project uses `tox` for development. You can get started like this:
 
 ```bash
-git clone git@github.com:tkreuziger/comfyui-types.git ./comfyui_types
+git clone https://github.com/tkreuziger/comfyui-types.git ./comfyui_types
 pip install -e ./comfyui_types
 ```
 
