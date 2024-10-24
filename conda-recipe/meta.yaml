@@ -1,0 +1,42 @@
+{% set name = "comfyui_types" %}
+{% set version = "1.2.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/tkreuziger/comfyui-types.git
+  git_rev: main
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+  noarch: python
+
+requirements:
+  host:
+    - python >=3.10
+    - pip >=24.2
+    - setuptools >=75.1
+    - setuptools-scm >=8.0
+    - wheel >=0.44.0
+  run:
+    - python >=3.10
+
+test:
+  imports:
+    - comfyui_types
+
+about:
+  home: https://github.com/tkreuziger/comfyui-types
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: 'A small helper library to add types for custom ComfyUI nodes.'
+  doc_url: https://github.com/tkreuziger/comfyui-types
+  dev_url: https://github.com/tkreuziger/comfyui-types
+
+extra:
+  recipe-maintainers:
+    - tkreuziger
