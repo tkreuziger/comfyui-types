@@ -54,7 +54,8 @@ local_scheme = "node-and-timestamp"
 envlist = [
     "format",
     "lint",
-    "build"
+    "build",
+    "publish",
 ]
 isolated_build = true
 parallel = "auto"
@@ -84,12 +85,19 @@ commands = [
 description = "Build the library."
 extras = ["build"]
 skip_install = false
-allowlist_externals = ["rm", "python", "twine"]
+allowlist_externals = ["python", "twine"]
 commands = [
-    # ["sh", "-c", "rm ./dist/* || true"],
-    ["rm", "-rf", "dist"],
     ["python", "-m", "build"],
-    ["twine", "upload", "--repository", "testpypi", "dist/*"]
+    ["twine", "upload", "--repository", "testpypi", "dist/*", "--verbose"]
+]
+
+[tool.tox.env.publish]
+description = "Publish the library."
+extras = ["build"]
+skip_install = false
+allowlist_externals = ["python", "twine"]
+commands = [
+    ["twine", "upload", "--repository", "pypi", "dist/*", "--verbose"]
 ]
 
 # ------------------------------------------------------------------------------

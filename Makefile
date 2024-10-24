@@ -12,5 +12,10 @@ lint:
 
 .PHONY: build
 build:
+	rm -rf dist/
 	tox -e build
+
+.PHONY: publish
+publish: build
+	tox -e publish
 
