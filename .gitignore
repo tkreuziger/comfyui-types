@@ -12,3 +12,5 @@ dist/
 # Developer tooling
 .ignore
 .nvmrc
+
+_version.py

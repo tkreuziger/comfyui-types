@@ -1,11 +1,12 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=75.2", "setuptools-scm>=8.0", "wheel>=0.44.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "comfyui_types"
 requires-python = ">=3.10"
-version = "1.1.1"
+# version = "1.1.1"
+dynamic = ["version"]
 description = "A small helper library to add types for custom ComfyUI nodes."
 readme = "README.md"
 authors = [{name = "Tristan Kreuziger", email = "info@tkreuziger.com"}]
@@ -42,6 +43,9 @@ dev = [
 
 [tool.setuptools]
 package-dir = {"" = "src"}
+
+[tool.setuptools_scm]
+version_file = "src/comfyui_types/_version.py"
 
 # ------------------------------------------------------------------------------
 
