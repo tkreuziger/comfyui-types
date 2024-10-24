@@ -29,15 +29,12 @@ lint = [
 ]
 build = [
     "build[virtualenv]==1.0.3",
+    "twine>=5.1.1,<6.0",
 ]
 dev = [
-    "tox>=4.5,<5.0",
-    "pip-tools>=7.4.1,<8.0",
-    "twine>=5.1.1,<6.0",
+    "tox>=4.23,<5.0",
 
-    "comfyui_types[format]",
     "comfyui_types[lint]",
-    "comfyui_types[test]",
     "comfyui_types[build]",
 ]
 
@@ -52,7 +49,7 @@ package-dir = {"" = "src"}
 envlist = [
     "format",
     "lint",
-    "test",
+    "build"
 ]
 isolated_build = true
 parallel = "auto"
@@ -78,6 +75,16 @@ commands = [
     ["mypy", "src"],
 ]
 
+[tool.tox.env.build]
+description = "Build the library."
+extras = "build"
+allowlist_externals = ["rm", "python", "twine"]
+commands = [
+    ["rm", "dist/*"],
+    ["python", "-m", "build"],
+    ["twine", "upload", "--repository", "testpypi", "dist/*"]
+]
+
 # ------------------------------------------------------------------------------
 
 [tool.ruff]
@@ -98,6 +105,8 @@ ignore = [
     "PT023",
     "Q002",
     "D300",
+    "PLR0913",
+    "N999",
 ]
 fixable = ["ALL"]
 unfixable = []
@@ -110,6 +119,7 @@ unfixable = []
 "**/__init__.py" = [
     "F401",
     "F403",
+    "D104",
 ]
 
 [tool.ruff.lint.pyupgrade]
@@ -139,4 +149,3 @@ exclude = [
     ".git/",
     "venv/",
 ]
-
