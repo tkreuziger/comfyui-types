@@ -32,4 +32,12 @@ class BooleanInput(InputBase):
 
     def get_input_type(self) -> InputTypeReturnType:
         """Return input type."""
-        return ('BOOLEAN', {'default': self.default, 'lazy': self.lazy})
+        return (
+            'BOOLEAN',
+            {
+                'default': self.default,
+                'lazy': self.lazy,
+                'label_on': self.label_on,
+                'label_off': self.label_off,
+            },
+        )
