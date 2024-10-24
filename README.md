@@ -201,12 +201,23 @@ If you want to add a project to this list, please open a PR!
 
 ## Development
 
-For development, there is no special setup, simply install the project in edit
-mode:
+The project uses `tox` as for development. You can get started like this:
 
-```python
+```bash
 git clone git@github.com:tkreuziger/comfyui-types.git ./comfyui_types
 pip install -e ./comfyui_types
+```
+
+Then you can run different parts of the pipeline:
+```bash
+# Format code with Ruff
+tox -e format
+
+# Run linters Ruff and MyPy
+tox -e lint
+
+# Build the package
+tox -e build
 ```
 
 ## License
