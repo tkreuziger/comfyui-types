@@ -1,4 +1,4 @@
-# Example 2: Describe an image via a Vision API
+# Example 3: Describe an image via a Vision API
 
 The following custom node provides a way of describing a given input image with
 Claude's vision API. It is taken straight from

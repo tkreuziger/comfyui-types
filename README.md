@@ -56,33 +56,37 @@ Next you can define some meta parameters:
 from comfyui_types import ComfyUINode
 
 class MyCustomNode(ComfyUINode):
+    function = 'execute'
     category = 'mycategory/mynodes'
     display_name = 'My Custom Node'
-    function = 'execute'
+    deprecated = False
+    experimental = False
 ```
 
+- `function` works the same as the traditional `FUNCTION` member, but has a
+default value of `execute`. This means that you can save yourself writing one
+line of code, if you simply name the method of your node that you want to be
+executed `execute`.
 - The `category` member is equivalent to the `CATEGORY` member, it is simply
-written in lower case letters for consistency. Feel free to continue using
-`CATEGORY`, if you prefer so, it will work as usual.
+written in lower case letters for consistency.
 - `display_name` defines the name that will be exported and used for showing
 your name in the ComfyUI frontend. If you do not define this member, it will
 simply use the name of the class, i.e. `MyCustomNode` in this example,
 automatically. This is only relevant, if you use the [exporter
 function](#exporting-custom-nodes), described below, otherwise it can safely
 be ignored.
-- `function` works the same as the traditional `FUNCTION` member, but has a
-default value of `execute`. This means that you can save yourself writing one
-line of code, if you simply name the method of your node that you want to be
-executed `execute`. Same as with `category`, you can simply stick to the
-current way of defining a `FUNCTION` field and it will work as intended.
+- `deprecated` and `experimental` are simply aliases for `DEPRECATED` and
+`EXPERIMENTAL` respectively
 
 ### Defining input parameters
 
 You define your input parameters as fields of the node class. All available
 input types are described in the [documentation](/docs/input_types.md).
 
-The name of the field will be used as the name that is shown in the UI. Any
-other options are defined as parameters of the input field:
+By default, the name of the field will be used as the name that is shown in the
+UI. You can override this behavior, by passing the optional parameter
+`display_name`, when defining your inputs. Any other options are defined as
+parameters of the input field:
 
 ```python
 from comfyui_types import ComfyUINode, StringInput, FloatInput
@@ -91,7 +95,7 @@ class MyCustomNode(ComfyUINode):
     pos_prompt_text = StringInput(default='masterpiece', multiline=True)
     neg_prompt_text = StringInput(required=False, default='b&w', multiline=True)
     custom_weight = FloatInput(default=1.0, min=0.0, max=1.0, step=0.1)
-    secret_parameter = FloatInput(hidden=True)
+    secret_parameter = FloatInput(hidden=True, display_name='super secret')
 ```
 
 Input parameters can be `required`, `optional`, or `hidden` (see [Input
@@ -100,6 +104,26 @@ parameters are required, so the default value for `required` is `True`. If you
 need an optional parameter, pass in `required=False`. If you want a hidden
 parameter, pass in `hidden=True`. Due to the assumption of required being the
 default state, `hidden=True` will overwrite the required state.
+
+The defintion above will lead to the following inputs for our custom node:
+
+```python
+>> print(MyCustomNode.INPUT_TYPES)
+
+{
+    'required': {
+        'pos_prompt_text': ('STRING', {'multiline': True, 'default': 'masterpiece'}),
+        'custom_weight': ('FLOAT', {'default': 1.0, 'min': 0.0, 'max': 1.0,
+                                    'step': 0.1}),
+    },
+    'optional': {
+        'neg_prompt_text': ('STRING', {'multiline': True, 'default': 'b&w'})
+    },
+    'hidden': {
+        'super secret': ('FLOAT',)
+    }
+}
+```
 
 ### Defining output parameters
 
@@ -116,17 +140,19 @@ class MyCustomNode(ComfyUINode):
     # Definitions so far...
 
     combined_prompt = StringOutput()
-    calculated_score = FloatOutput()
+    calculated_score = FloatOutput(display_name='Final Score')
 ```
 
 Outputs are very straightforward to define, as they do not need any
 configuration. The name for the `RETURN_NAMES` list is taken from the variable
-name that you are assigning, i.e., `combined_prompt` in this example. The
-example above would result in the following outputs:
+name that you are assigning, i.e., `combined_prompt` in this example.
+Alternatively, you can override this in the same way as with input parameters by
+passing the optional `display_name` parameter to the definition. The example
+above would result in the following outputs:
 
 ```python
 RETURN_TYPES = ('STRING', 'FLOAT')
-RETURN_NAMES = ('combined_prompt', 'calculated_score')
+RETURN_NAMES = ('combined_prompt', 'Final Score')
 ```
 
 ## Examples
@@ -145,6 +171,8 @@ NODE_CLASS_MAPPINGS = {
 NODE_DISPLAY_NAME_MAPPINGS = {
     'MyCustomNode': 'My Cool Custom Node',
 }
+
+__all__ = [NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS]
 ```
 
 However, there is a convenience function to help with this:
@@ -153,7 +181,10 @@ However, there is a convenience function to help with this:
 NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS = export_nodes([
     MyCustomNode,
 ])
+
+__all__ = [NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS]
 ```
+(The `__all__` is not strictly needed, but good practice.)
 
 This will automatically create the mapping tables according to the class name
 and optionally the `display_name` property. If no `display_name` is set, the

@@ -13,6 +13,9 @@ write your own nodes. If you need to add a new type, please refer to the
 The base class for all input types. Usually, you will only need this class to
 create your own custom input types.
 
+The one shared parameter across all inputs is the `display_name` parameter that
+defines the name used in the UI of the node.
+
 ### NumberDisplayMode
 
 `comfyui_types.base.NumberDisplayMode`
@@ -72,13 +75,16 @@ my_string_input = StringInput(
 
 `comfyui_types.inputs.BooleanInput`
 
-A simple boolean input with only an optional `default` parameter (which itself
-defaults to `False`).
+A simple boolean input with three optional `default` parameters (which itself
+defaults to `False`):
+- `default: bool = False`: The default value for this input.
+- `label_on: str = 'On'`: The label shown in the UI, when the input is true.
+- `label_off: str = 'Off'`: The label shown in the UI, when the input is false.
 
 Example:
 
 ```python
-my_bool_input = BooleanInput(default=True)
+my_bool_input = BooleanInput(default=True, label_on='Yes', label_off='No')
 ```
 
 ### IntegerInput
