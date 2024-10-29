@@ -18,4 +18,5 @@ build:
 .PHONY: publish
 publish: build
 	tox -e publish
+	cd ./conda-recipe && conda build .
 
