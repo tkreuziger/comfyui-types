@@ -78,8 +78,8 @@ my_string_input = StringInput(
 A simple boolean input with three optional `default` parameters (which itself
 defaults to `False`):
 - `default: bool = False`: The default value for this input.
-- `label_on: str = 'On'`: The label shown in the UI, when the input is true.
-- `label_off: str = 'Off'`: The label shown in the UI, when the input is false.
+- `label_on: str = 'true'`: The label shown in the UI, when the input is true.
+- `label_off: str = 'false'`: The label shown in the UI, when the input is false.
 
 Example:
 

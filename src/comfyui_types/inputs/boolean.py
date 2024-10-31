@@ -17,8 +17,8 @@ class BooleanInput(InputBase):
         required: bool = True,
         hidden: bool | None = None,
         default: bool = False,
-        label_on: str = 'On',
-        label_off: str = 'Off',
+        label_on: str = 'true',
+        label_off: str = 'false',
         display_name: str | None = None,
     ) -> None:
         """Initialize BooleanInput."""
