@@ -103,3 +103,14 @@ class ComfyUINodeMetaClass(type):
 
 class ComfyUINode(metaclass=ComfyUINodeMetaClass):
     """Abstract base class for all typed ComfyUI nodes."""
+
+    FUNCTION = ComfyUINodeMetaClass.FUNCTION
+    INPUT_TYPES = ComfyUINodeMetaClass.INPUT_TYPES
+    OUTPUT_NODE = ComfyUINodeMetaClass.OUTPUT_NODE
+
+    RETURN_TYPES = ComfyUINodeMetaClass.RETURN_TYPES
+    RETURN_NAMES = ComfyUINodeMetaClass.RETURN_NAMES
+
+    DEPRECATED = ComfyUINodeMetaClass.DEPRECATED
+    EXPERIMENTAL = ComfyUINodeMetaClass.EXPERIMENTAL
+
