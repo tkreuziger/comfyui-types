@@ -23,12 +23,12 @@ class ComfyUINode:
         """Initialize subclass attributes."""
         super().__init_subclass__(**kwargs)
 
-        cls.FUNCTION = cls.function
-        cls.CATEGORY = cls.category
-        cls.DISPLAY_NAME = cls.display_name
-        cls.OUTPUT_NODE = cls.output_node
-        cls.DEPRECATED = cls.deprecated
-        cls.EXPERIMENTAL = cls.experimental
+        cls.FUNCTION = cls.function  # type: ignore[attr-defined]
+        cls.CATEGORY = cls.category  # type: ignore[attr-defined]
+        cls.DISPLAY_NAME = cls.display_name  # type: ignore[attr-defined]
+        cls.OUTPUT_NODE = cls.output_node  # type: ignore[attr-defined]
+        cls.DEPRECATED = cls.deprecated  # type: ignore[attr-defined]
+        cls.EXPERIMENTAL = cls.experimental  # type: ignore[attr-defined]
 
     def INPUT_TYPES(self) -> INPUT_TYPES_TYPE:  # noqa: N802
         """Return list of input types."""
@@ -84,10 +84,16 @@ class ComfyUINode:
 
         return tuple(output_names)  # type: ignore  # noqa: PGH003
 
+    @classmethod
+    def _get_display_name(cls) -> str:
+        """Return display name."""
+        return cls.display_name if cls.display_name != '' else cls.__name__
+
     def describe(self) -> str:
         """Describe node."""
-        description = f'Node "{self.__class__.__name__}" in category "{self.category}"'
-        description += f'\nEntry: {self.FUNCTION}'
+        name = self.__class__.__name__
+        description = f'Node "{name}" in category "{self.category}"'
+        description += f'\nEntry: {self.function}'
         inputs = f'Inputs:\n{json.dumps(self.INPUT_TYPES(), indent=2)}'
         outputs = f'Outputs: {self.RETURN_TYPES}'
         return_names = f'Return names: {self.RETURN_NAMES}'
