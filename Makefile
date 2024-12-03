@@ -15,8 +15,11 @@ build:
 	rm -rf dist/
 	tox -e build
 
-.PHONY: publish
-publish:
+.PHONY: publish-pip
+publish-pip:
 	tox -e publish
-	cd ./conda-recipe && conda build .
+
+.PHONY: publish-conda
+publish-conda:
+	cd ./conda-recipe && conda build . && conda build purge
 
