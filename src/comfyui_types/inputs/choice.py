@@ -17,10 +17,14 @@ class ChoiceInput(InputBase):
         hidden: bool | None = None,
         default: str | None = None,
         display_name: str | None = None,
+        lazy: bool = False,
     ) -> None:
         """Initialize ChoiceInput."""
         super().__init__(
-            required=required, hidden=hidden, display_name=display_name
+            required=required,
+            hidden=hidden,
+            display_name=display_name,
+            lazy=lazy,
         )
 
         if not choices or len(choices) == 0:
@@ -36,4 +40,4 @@ class ChoiceInput(InputBase):
 
     def get_input_type(self) -> InputTypeReturnType:
         """Return input type."""
-        return (self.choices, {'default': self.default})
+        return (self.choices, {'default': self.default, 'lazy': self.lazy})

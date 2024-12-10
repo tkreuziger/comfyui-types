@@ -8,7 +8,6 @@ class StringInput(InputBase):
 
     default: str = ''
     multiline: bool = False
-    lazy: bool = True
 
     def __init__(
         self,
@@ -18,10 +17,14 @@ class StringInput(InputBase):
         default: str = '',
         multiline: bool = False,
         display_name: str | None = None,
+        lazy: bool = False,
     ) -> None:
         """Initialize StringInput."""
         super().__init__(
-            required=required, hidden=hidden, display_name=display_name
+            required=required,
+            hidden=hidden,
+            display_name=display_name,
+            lazy=lazy,
         )
 
         self.default = default

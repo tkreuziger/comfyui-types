@@ -22,6 +22,7 @@ class InputBase:
     input_type: InputType = InputType.REQUIRED
     type_name: str = ''
     display_name: str | None = None
+    lazy: bool = False
 
     def __init__(
         self,
@@ -29,6 +30,7 @@ class InputBase:
         required: bool = True,
         hidden: bool | None = None,
         display_name: str | None = None,
+        lazy: bool = False,
     ) -> None:
         """Initialize InputBase."""
         if required and not hidden:
@@ -39,6 +41,7 @@ class InputBase:
             self.input_type = InputType.OPTIONAL
 
         self.display_name = display_name
+        self.lazy = lazy
 
     def get_input_type(self) -> InputTypeReturnType:
         """Return input type."""

@@ -11,7 +11,6 @@ class IntegerInput(InputBase):
     max: int = 0
     step: int = 1
     display: NumberDisplayMode = NumberDisplayMode.NUMBER
-    lazy: bool = True
 
     def __init__(
         self,
@@ -24,10 +23,14 @@ class IntegerInput(InputBase):
         step: int = 1,
         display: NumberDisplayMode = NumberDisplayMode.NUMBER,
         display_name: str | None = None,
+        lazy: bool = False,
     ) -> None:
         """Initialize IntegerInput."""
         super().__init__(
-            required=required, hidden=hidden, display_name=display_name
+            required=required,
+            hidden=hidden,
+            display_name=display_name,
+            lazy=lazy,
         )
 
         self.default = default

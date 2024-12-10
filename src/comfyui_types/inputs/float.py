@@ -12,7 +12,6 @@ class FloatInput(InputBase):
     step: float = 0.1
     round: float | bool = False
     display: NumberDisplayMode = NumberDisplayMode.NUMBER
-    lazy: bool = True
 
     def __init__(
         self,
@@ -26,10 +25,14 @@ class FloatInput(InputBase):
         round: float | bool | None = False,  # noqa: A002
         display: NumberDisplayMode = NumberDisplayMode.NUMBER,
         display_name: str | None = None,
+        lazy: bool = False,
     ) -> None:
         """Initialize FloatInput."""
         super().__init__(
-            required=required, hidden=hidden, display_name=display_name
+            required=required,
+            hidden=hidden,
+            display_name=display_name,
+            lazy=lazy,
         )
 
         self.default = default

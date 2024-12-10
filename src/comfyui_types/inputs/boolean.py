@@ -7,7 +7,6 @@ class BooleanInput(InputBase):
     """ComfyUI boolean input."""
 
     default: bool = False
-    lazy: bool = True
     label_on: str = 'On'
     label_off: str = 'Off'
 
@@ -20,10 +19,14 @@ class BooleanInput(InputBase):
         label_on: str = 'true',
         label_off: str = 'false',
         display_name: str | None = None,
+        lazy: bool = False,
     ) -> None:
         """Initialize BooleanInput."""
         super().__init__(
-            required=required, hidden=hidden, display_name=display_name
+            required=required,
+            hidden=hidden,
+            display_name=display_name,
+            lazy=lazy,
         )
 
         self.default = default
