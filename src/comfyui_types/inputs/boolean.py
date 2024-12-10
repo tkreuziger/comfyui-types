@@ -7,8 +7,8 @@ class BooleanInput(InputBase):
     """ComfyUI boolean input."""
 
     default: bool = False
-    label_on: str = 'On'
-    label_off: str = 'Off'
+    label_on: str = 'true'
+    label_off: str = 'false'
 
     def __init__(
         self,
