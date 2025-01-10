@@ -30,10 +30,9 @@ class ComfyUINode:
         cls.DEPRECATED = cls.deprecated  # type: ignore[attr-defined]
         cls.EXPERIMENTAL = cls.experimental  # type: ignore[attr-defined]
 
-    def INPUT_TYPES(self) -> INPUT_TYPES_TYPE:  # noqa: N802
+    @classmethod
+    def INPUT_TYPES(cls) -> INPUT_TYPES_TYPE:  # noqa: N802
         """Return list of input types."""
-        cls = self.__class__
-
         input_types: INPUT_TYPES_TYPE = {
             'required': {},
             'optional': {},
@@ -53,11 +52,10 @@ class ComfyUINode:
 
         return input_types
 
+    @classmethod
     @property
-    def RETURN_TYPES(self) -> tuple[str, ...]:  # noqa: N802
+    def RETURN_TYPES(cls) -> tuple[str, ...]:  # noqa: N802
         """Return list of return types."""
-        cls = self.__class__
-
         output_types = []
         for field in cls.__dict__:
             if isinstance(getattr(cls, field), OutputBase):
@@ -66,11 +64,10 @@ class ComfyUINode:
 
         return tuple(output_types)
 
+    @classmethod
     @property
-    def RETURN_NAMES(self) -> tuple[str]:  # noqa: N802
+    def RETURN_NAMES(cls) -> tuple[str]:  # noqa: N802
         """Return list of return names."""
-        cls = self.__class__
-
         output_names = []
         for field in cls.__dict__:
             if isinstance(getattr(cls, field), OutputBase):
