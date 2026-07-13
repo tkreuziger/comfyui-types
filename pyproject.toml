@@ -1,106 +1,54 @@
-[build-system]
-requires = ["setuptools>=75.2", "setuptools-scm>=8.0", "wheel>=0.44.0"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "comfyui_types"
-requires-python = ">=3.10"
-dynamic = ["version"]
 description = "A small helper library to add types for custom ComfyUI nodes."
 readme = "README.md"
-authors = [{name = "Tristan Kreuziger", email = "info@tkreuziger.com"}]
-dependencies = []
+requires-python = ">=3.10"
+authors = [{ name = "Tristan Kreuziger", email = "info@tkreuziger.com" }]
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    "Operating System :: OS Independent",
-    "Development Status :: 5 - Production/Stable",
+  "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
 ]
+dependencies = []
+dynamic = ["version"]
 
 [project.urls]
 Homepage = "https://github.com/tkreuziger/comfyui-types"
 Issues = "https://github.com/tkreuziger/comfyui-types/issues"
 
-[project.optional-dependencies]
-lint = [
-    "ruff>=0.5.6,<1.0",
-    "mypy-extensions>=1.0.0",
-    "mypy>=1.11.1,<2.0",
-]
-build = [
-    "build[virtualenv]==1.0.3",
-    "twine>=5.1.1,<6.0",
-]
+[dependency-groups]
 dev = [
-    "tox>=4.23,<5.0",
-
-    "comfyui_types[lint]",
-    "comfyui_types[build]",
+  "build[virtualenv]>=1.0.3",
+  "mypy>=1.11.1,<2.0",
+  "mypy-extensions>=1.0.0",
+  "pytest>=8.0,<9.0",
+  "ruff>=0.5.6,<1.0",
+  "tox>=4.23,<5.0",
+  "twine>=5.1.1,<6.0",
 ]
 
 # ------------------------------------------------------------------------------
 
-[tool.setuptools]
-package-dir = {"" = "src"}
-
-[tool.setuptools_scm]
-version_file = "src/comfyui_types/_version.py"
-version_scheme = "guess-next-dev"
-local_scheme = "node-and-timestamp"
-
-# ------------------------------------------------------------------------------
-
-[tool.tox]
-envlist = [
-    "format",
-    "lint",
-    "build",
-    "publish",
+[build-system]
+requires = [
+  "setuptools>=75.2",
+  "setuptools-scm>=8.0",
+  "wheel>=0.44.0",
 ]
-isolated_build = true
-parallel = "auto"
+build-backend = "setuptools.build_meta"
 
-[tool.tox.env_run_base]
-basepython = ["py310"]
-skip_install = true
-
-[tool.tox.env.format]
-description = "Format code with ruff."
-extras = ["lint"]
-allowlist_externals = ["ruff"]
-commands = [
-    ["ruff", "format", "src"],
+[tool.mypy]
+mypy_path = "src"
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_unused_ignores = false
+strict = true
+exclude = [
+  ".git/",
+  "venv/",
 ]
-
-[tool.tox.env.lint]
-description = "Run static checkers."
-extras = ["lint"]
-allowlist_externals = ["ruff", "mypy"]
-commands = [
-    ["ruff", "check", "src", "--fix"],
-    ["mypy", "src"],
-]
-
-[tool.tox.env.build]
-description = "Build the library."
-extras = ["build"]
-skip_install = false
-allowlist_externals = ["python", "twine"]
-commands = [
-    ["python", "-m", "build"],
-    ["twine", "upload", "--repository", "testpypi", "dist/*", "--verbose"]
-]
-
-[tool.tox.env.publish]
-description = "Publish the library."
-extras = ["build"]
-skip_install = false
-allowlist_externals = ["python", "twine"]
-commands = [
-    ["twine", "upload", "--repository", "pypi", "dist/*", "--verbose"]
-]
-
-# ------------------------------------------------------------------------------
 
 [tool.ruff]
 line-length = 80
@@ -111,30 +59,31 @@ target-version = "py310"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-    "COM812",
-    "ISC001",
-    "ANN101",
-    "PT001",
-    "PT004",
-    "PT005",
-    "PT023",
-    "Q002",
-    "D300",
-    "PLR0913",
-    "N999",
+  "COM812",
+  "ISC001",
+  "PT001",
+  "PT023",
+  "Q002",
+  "D300",
+  "PLR0913",
+  "N999",
 ]
 fixable = ["ALL"]
 unfixable = []
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = [
-    "S101",
-    "D103",
+  "S101",
+  "D103",
+  "D102",
+  "PLR2004",
+  "SLF001",
+  "T201",
 ]
 "**/__init__.py" = [
-    "F401",
-    "F403",
-    "D104",
+  "F401",
+  "F403",
+  "D104",
 ]
 
 [tool.ruff.lint.pyupgrade]
@@ -143,24 +92,88 @@ keep-runtime-typing = true
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.ruff.format]
-quote-style = "single"
-docstring-code-format = true
-docstring-code-line-length = 80
-
 [tool.ruff.lint.flake8-quotes]
 inline-quotes = "single"
 
 # ------------------------------------------------------------------------------
 
-[tool.mypy]
-mypy_path = "src"
-disallow_untyped_calls = true
-disallow_untyped_defs = true
-check_untyped_defs = true
-warn_unused_ignores = false
-strict = true
-exclude = [
-    ".git/",
-    "venv/",
+[tool.ruff.format]
+quote-style = "single"
+docstring-code-format = true
+docstring-code-line-length = 80
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools_scm]
+version_file = "src/comfyui_types/_version.py"
+version_scheme = "guess-next-dev"
+local_scheme = "node-and-timestamp"
+
+# ------------------------------------------------------------------------------
+
+[tool.tox]
+envlist = [
+  "format",
+  "lint",
+  "test",
+  "build",
+  "publish",
 ]
+isolated_build = true
+parallel = "auto"
+
+[tool.tox.env_run_base]
+basepython = ["py310"]
+skip_install = true
+
+[tool.tox.env.format]
+description = "Format code with ruff."
+dependency_groups = ["lint"]
+allowlist_externals = ["ruff"]
+commands = [
+  ["ruff", "format", "src"],
+]
+
+[tool.tox.env.lint]
+description = "Run static checkers."
+dependency_groups = ["lint"]
+allowlist_externals = ["ruff", "mypy"]
+commands = [
+  ["ruff", "check", "src", "--fix"],
+  ["mypy", "src"],
+]
+
+[tool.tox.env.test]
+description = "Run tests."
+dependency_groups = ["test"]
+allowlist_externals = ["pytest"]
+commands = [
+  ["pytest", "tests", "-v"],
+]
+
+[tool.tox.env.build]
+description = "Build the library."
+dependency_groups = ["build"]
+skip_install = false
+allowlist_externals = ["python", "twine"]
+commands = [
+  ["python", "-m", "build"],
+  [
+    "twine",
+    "upload",
+    "--repository",
+    "testpypi",
+    "dist/*",
+    "--verbose"
+  ]
+]
+
+[tool.tox.env.publish]
+description = "Publish the library."
+dependency_groups = ["build"]
+skip_install = false
+allowlist_externals = ["python", "twine"]
+commands = [["twine", "upload", "--repository", "pypi", "dist/*", "--verbose"]]
+
+# ------------------------------------------------------------------------------
