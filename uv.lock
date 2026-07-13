@@ -219,10 +219,6 @@ name = "comfyui-types"
 source = { editable = "." }
 
 [package.dev-dependencies]
-build = [
-    { name = "build", extra = ["virtualenv"] },
-    { name = "twine" },
-]
 dev = [
     { name = "build", extra = ["virtualenv"] },
     { name = "mypy" },
@@ -232,24 +228,12 @@ dev = [
     { name = "tox" },
     { name = "twine" },
 ]
-lint = [
-    { name = "mypy" },
-    { name = "mypy-extensions" },
-    { name = "ruff" },
-]
-test = [
-    { name = "pytest" },
-]
 
 [package.metadata]
 
 [package.metadata.requires-dev]
-build = [
-    { name = "build", extras = ["virtualenv"], specifier = "==1.0.3" },
-    { name = "twine", specifier = ">=5.1.1,<6.0" },
-]
 dev = [
-    { name = "build", extras = ["virtualenv"], specifier = "==1.0.3" },
+    { name = "build", extras = ["virtualenv"], specifier = ">=1.0.3" },
     { name = "mypy", specifier = ">=1.11.1,<2.0" },
     { name = "mypy-extensions", specifier = ">=1.0.0" },
     { name = "pytest", specifier = ">=8.0,<9.0" },
@@ -257,12 +241,6 @@ dev = [
     { name = "tox", specifier = ">=4.23,<5.0" },
     { name = "twine", specifier = ">=5.1.1,<6.0" },
 ]
-lint = [
-    { name = "mypy", specifier = ">=1.11.1,<2.0" },
-    { name = "mypy-extensions", specifier = ">=1.0.0" },
-    { name = "ruff", specifier = ">=0.5.6,<1.0" },
-]
-test = [{ name = "pytest", specifier = ">=8.0,<9.0" }]
 
 [[package]]
 name = "cryptography"
