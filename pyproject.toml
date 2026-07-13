@@ -32,7 +32,7 @@ dev = [
 
 [build-system]
 requires = [
-  "setuptools>=75.2",
+  "setuptools>=61.0,<70.0",
   "setuptools-scm>=8.0",
   "wheel>=0.44.0",
 ]
@@ -103,17 +103,20 @@ docstring-code-format = true
 docstring-code-line-length = 80
 
 [tool.setuptools]
-package-dir = { "" = "src" }
+package-dir = {"" = "src"}
 
 [tool.setuptools_scm]
 version_file = "src/comfyui_types/_version.py"
 version_scheme = "post-release"
 local_scheme = "no-local-version"
 
+[tool.distutils.bdist_wheel]
+universal = false
+
 # ------------------------------------------------------------------------------
 
 [tool.tox]
-envlist = [
+env_list = [
   "format",
   "lint",
   "test",
@@ -129,7 +132,7 @@ skip_install = true
 
 [tool.tox.env.format]
 description = "Format code with ruff."
-dependency_groups = ["lint"]
+dependency_groups = ["dev"]
 allowlist_externals = ["ruff"]
 commands = [
   ["ruff", "format", "src"],
@@ -137,7 +140,7 @@ commands = [
 
 [tool.tox.env.lint]
 description = "Run static checkers."
-dependency_groups = ["lint"]
+dependency_groups = ["dev"]
 allowlist_externals = ["ruff", "mypy"]
 commands = [
   ["ruff", "check", "src", "--fix"],
@@ -146,7 +149,7 @@ commands = [
 
 [tool.tox.env.test]
 description = "Run tests."
-dependency_groups = ["test"]
+dependency_groups = ["dev"]
 allowlist_externals = ["pytest"]
 commands = [
   ["pytest", "tests", "-v"],
@@ -154,7 +157,7 @@ commands = [
 
 [tool.tox.env.build]
 description = "Build the library."
-dependency_groups = ["build"]
+dependency_groups = ["dev"]
 skip_install = false
 allowlist_externals = ["python", "twine"]
 commands = [
@@ -171,9 +174,7 @@ commands = [
 
 [tool.tox.env.publish]
 description = "Publish the library."
-dependency_groups = ["build"]
+dependency_groups = ["dev"]
 skip_install = false
 allowlist_externals = ["python", "twine"]
 commands = [["twine", "upload", "--repository", "pypi", "dist/*", "--verbose"]]
-
-# ------------------------------------------------------------------------------
