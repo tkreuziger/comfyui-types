@@ -4,7 +4,7 @@ This is a small helper project to make it easier to write custom nodes for
 ComfyUI. Usually, types in ComfyUI are represented as string constants for
 parameter and return types, which can cause errors during development, as it is
 easy to mistype. With such string constants, your IDE cannot recognize the types
-and offer suggestions or alarm you abour errors. Such an error will only be
+and offer suggestions or alarm you about errors. Such an error will only be
 found, when ComfyUI is restarted and the custom node is executed.
 
 This project provides a small set of shallow Python classes that provide typing,
@@ -31,6 +31,11 @@ Alternatively, you can install the package locally from source:
 git clone https://github.com/tkreuziger/comfyui-types.git ./comfyui_types
 pip install ./comfyui_types
 ```
+
+## Requirements
+
+- **Python 3.10+**
+- No runtime dependencies
 
 ## Defining a custom node
 
@@ -105,10 +110,10 @@ need an optional parameter, pass in `required=False`. If you want a hidden
 parameter, pass in `hidden=True`. Due to the assumption of required being the
 default state, `hidden=True` will overwrite the required state.
 
-The defintion above will lead to the following inputs for our custom node:
+The definition above will lead to the following inputs for our custom node:
 
 ```python
->> print(MyCustomNode.INPUT_TYPES)
+>> print(MyCustomNode.INPUT_TYPES())
 
 {
     'required': {
@@ -120,7 +125,7 @@ The defintion above will lead to the following inputs for our custom node:
         'neg_prompt_text': ('STRING', {'multiline': True, 'default': 'b&w'})
     },
     'hidden': {
-        'super secret': ('FLOAT',)
+        'super secret': ('FLOAT', {'lazy': False})
     }
 }
 ```
@@ -172,7 +177,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     'MyCustomNode': 'My Cool Custom Node',
 }
 
-__all__ = [NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS]
+__all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS']
 ```
 
 However, there is a convenience function to help with this:
@@ -182,7 +187,7 @@ NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS = export_nodes([
     MyCustomNode,
 ])
 
-__all__ = [NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS]
+__all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS']
 ```
 (The `__all__` is not strictly needed, but good practice.)
 
@@ -241,7 +246,8 @@ The project uses `tox` for development. You can get started like this:
 
 ```bash
 git clone https://github.com/tkreuziger/comfyui-types.git ./comfyui_types
-pip install -e ./comfyui_types
+cd comfyui_types
+uv sync --group dev
 ```
 
 Then you can run different parts of the pipeline:
@@ -252,8 +258,28 @@ tox -e format
 # Run linters Ruff and MyPy
 tox -e lint
 
+# Run tests with pytest
+tox -e test
+
 # Build the package
 tox -e build
+```
+
+### Dependency Groups
+
+This project uses [PEP 735](https://peps.python.org/pep-0735/) dependency groups
+for development dependencies. The following groups are available:
+
+- `lint`: ruff, mypy
+- `test`: pytest
+- `build`: build, twine
+- `dev`: all of the above plus tox
+
+Install with uv:
+```bash
+uv sync --group dev      # all dev dependencies
+uv sync --group lint     # only lint tools
+uv sync --group test     # only test tools
 ```
 
 ## License

@@ -8,7 +8,7 @@ write your own nodes. If you need to add a new type, please refer to the
 
 ### InputBase
 
-`comfyui_types.base.InputBase`
+`comfyui_types.inputs.InputBase`
 
 The base class for all input types. Usually, you will only need this class to
 create your own custom input types.
@@ -18,7 +18,7 @@ defines the name used in the UI of the node.
 
 ### NumberDisplayMode
 
-`comfyui_types.base.NumberDisplayMode`
+`comfyui_types.inputs.NumberDisplayMode`
 
 Integer and float inputs can either be rendered as simple number inputs or as
 sliders by ComfyUI.
@@ -29,7 +29,7 @@ Values:
 
 ### InputType
 
-`comfyui_types.base.InputType`
+`comfyui_types.inputs.InputType`
 
 This type determines, whether an input is required, optional, or hidden. You do
 not need to use this type directly, use the provided parameters `required: bool
@@ -116,7 +116,7 @@ my_int_input = IntegerInput(
 
 `comfyui_types.inputs.FloatInput`
 
-A simple integer input with the following optional parameters:
+A simple float input with the following optional parameters:
 
 - `default: float = 0.0`: The default value of the input, `0.0` if not set.
 - `min: float = 0.0`: The minimum value of the input, `0.0` by default.
@@ -151,7 +151,7 @@ following parameters:
 
 - `default: str | None = None`: The default choice from the list. If `None`, the
 first option from the options list will be selected.
-- `options: list[str]`: The list of options to choose from.
+- `choices: list[str]`: The list of options to choose from.
 
 Example:
 

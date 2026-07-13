@@ -97,10 +97,9 @@ class VectorInput(ct.InputBase):
         return ('VECTOR', {'default': self.default})
 
 class VectorOutput(ct.OutputBase):
-    type_name = 'VECTOR'
+    output_type = 'VECTOR'
 ```
 
 ## Python support
 
-`comfyui-types` currently relies on Python 3.10 for type annotations, but could
-probably made to work with earlier versions like 3.8.
+`comfyui-types` requires Python 3.10 or later.
