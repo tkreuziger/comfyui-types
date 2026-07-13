@@ -4,9 +4,10 @@ import json
 from typing import Any
 
 from .inputs import InputBase
+from .inputs.base import InputTypeReturnType
 from .outputs import OutputBase
 
-INPUT_TYPES_TYPE = dict[str, dict[str, tuple[str | int | float]]]
+INPUT_TYPES_TYPE = dict[str, dict[str, InputTypeReturnType]]
 
 
 class ComfyUINode:
@@ -19,6 +20,9 @@ class ComfyUINode:
     deprecated: bool = False
     experimental: bool = False
 
+    RETURN_TYPES: tuple[str, ...]
+    RETURN_NAMES: tuple[str, ...]
+
     def __init_subclass__(cls, **kwargs: Any) -> None:  # noqa: ANN401
         """Initialize subclass attributes."""
         super().__init_subclass__(**kwargs)
@@ -29,6 +33,16 @@ class ComfyUINode:
         cls.OUTPUT_NODE = cls.output_node  # type: ignore[attr-defined]
         cls.DEPRECATED = cls.deprecated  # type: ignore[attr-defined]
         cls.EXPERIMENTAL = cls.experimental  # type: ignore[attr-defined]
+
+        output_types: list[str] = []
+        output_names: list[str] = []
+        for field in cls.__dict__:
+            if isinstance(getattr(cls, field), OutputBase):
+                field_obj = getattr(cls, field)
+                output_types.append(str(field_obj.get_output_type()))
+                output_names.append(field_obj.display_name or field)
+        cls.RETURN_TYPES = tuple(output_types)
+        cls.RETURN_NAMES = tuple(output_names)
 
     @classmethod
     def INPUT_TYPES(cls) -> INPUT_TYPES_TYPE:  # noqa: N802
@@ -44,42 +58,10 @@ class ComfyUINode:
                 field_obj = getattr(cls, field)
                 input_type = field_obj.get_input_type()
 
-                if field_obj.display_name not in [None, '']:
-                    field_name = field_obj.display_name
-                else:
-                    field_name = field
+                field_name = field_obj.display_name or field
                 input_types[field_obj.input_type.value][field_name] = input_type
 
         return input_types
-
-    @classmethod
-    @property
-    def RETURN_TYPES(cls) -> tuple[str, ...]:  # noqa: N802
-        """Return list of return types."""
-        output_types = []
-        for field in cls.__dict__:
-            if isinstance(getattr(cls, field), OutputBase):
-                field_obj = getattr(cls, field)
-                output_types.append(str(field_obj.get_output_type()))
-
-        return tuple(output_types)
-
-    @classmethod
-    @property
-    def RETURN_NAMES(cls) -> tuple[str]:  # noqa: N802
-        """Return list of return names."""
-        output_names = []
-        for field in cls.__dict__:
-            if isinstance(getattr(cls, field), OutputBase):
-                field_obj = getattr(cls, field)
-
-                if field_obj.display_name not in [None, '']:
-                    field_name = field_obj.display_name
-                else:
-                    field_name = field
-                output_names.append(field_name)
-
-        return tuple(output_names)  # type: ignore  # noqa: PGH003
 
     @classmethod
     def _get_display_name(cls) -> str:

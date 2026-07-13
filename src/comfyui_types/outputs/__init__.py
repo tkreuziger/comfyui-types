@@ -13,15 +13,15 @@ from .builtin import (
 )
 
 __all__ = [
-    'OutputBase',
-    'StringOutput',
-    'IntegerOutput',
-    'FloatOutput',
     'CLIPOutput',
     'ConditioningOutput',
+    'FloatOutput',
     'ImageOutput',
+    'IntegerOutput',
     'LatentOutput',
     'MaskOutput',
     'ModelOutput',
+    'OutputBase',
+    'StringOutput',
     'VAEOutput',
 ]

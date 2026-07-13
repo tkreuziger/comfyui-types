@@ -27,7 +27,7 @@ class ChoiceInput(InputBase):
             lazy=lazy,
         )
 
-        if not choices or len(choices) == 0:
+        if not choices:
             error_msg = 'ChoiceInput must have at least one choice.'
             raise ValueError(error_msg)
 

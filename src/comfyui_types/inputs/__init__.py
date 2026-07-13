@@ -17,19 +17,19 @@ from .integer import IntegerInput
 from .string import StringInput
 
 __all__ = [
-    'InputBase',
-    'NumberDisplayMode',
-    'InputType',
-    'StringInput',
     'BooleanInput',
-    'IntegerInput',
-    'FloatInput',
-    'ChoiceInput',
-    'ModelInput',
-    'VAEInput',
     'CLIPInput',
+    'ChoiceInput',
     'ConditioningInput',
+    'FloatInput',
     'ImageInput',
+    'InputBase',
+    'InputType',
+    'IntegerInput',
     'LatentInput',
     'MaskInput',
+    'ModelInput',
+    'NumberDisplayMode',
+    'StringInput',
+    'VAEInput',
 ]
